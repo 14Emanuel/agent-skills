@@ -63,16 +63,41 @@ This repository contains 41 production-ready agent skills organized into modular
 
 ---
 
-## Installation & Sync
+## Installation
 
-To use these skills globally across agent tools:
+### ⚡ One-Command Install (All Skills to All Agents)
+
+Install all 41 skills from this catalog directly into your agent environment in one command:
+
+```bash
+# Install globally to all detected agents (Gemini, Claude Code, Cursor, OpenCode, etc.):
+npx skills add 14Emanuel/agent-skills --all -g
+
+# Or install into the current project scope:
+npx skills add 14Emanuel/agent-skills --all
+```
+
+### 🎯 Selective Installation
+
+```bash
+# Browse skills interactively:
+npx skills add 14Emanuel/agent-skills -g
+
+# Install specific skills:
+npx skills add 14Emanuel/agent-skills --skill ui-ux-pro-max frontend-design -g
+
+# List all available skills in this catalog:
+npx skills add 14Emanuel/agent-skills --list
+```
+
+### 📁 Manual Clone & Sync Fallback
 
 ```bash
 # Clone to the default agents directory:
 git clone https://github.com/14Emanuel/agent-skills.git ~/.agents/skills
 
 # For Gemini / Antigravity CLI:
-# Keep ~/.gemini/config/skills synchronized or symlinked:
 # Windows (PowerShell):
 New-Item -ItemType SymbolicLink -Path "$HOME\.gemini\config\skills" -Target "$HOME\.agents\skills"
 ```
+
