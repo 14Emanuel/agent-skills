@@ -4,7 +4,7 @@ A centralized, curated repository of specialized AI agent skills compatible with
 
 ## Overview
 
-This repository contains 41 production-ready agent skills organized into modular directories. Each skill includes a standardized `SKILL.md` specification file defining system capabilities, operational triggers, reference scripts, and structured workflows.
+This repository contains 42 production-ready agent skills organized into modular directories. Each skill includes a standardized `SKILL.md` specification file defining system capabilities, operational triggers, reference scripts, and structured workflows.
 
 ---
 
@@ -41,6 +41,7 @@ This repository contains 41 production-ready agent skills organized into modular
 - **[`sort-pr-changes`](sort-pr-changes/SKILL.md)**: Change inspection, atomic task breakdown, fixes, and PR thread resolution.
 - **[`pr-dashboard`](pr-dashboard/SKILL.md)**: GitHub pull request dashboard inspection and status tracking.
 - **[`copilot-pr-autopilot`](copilot-pr-autopilot/SKILL.md)**: Automated PR workflows and Copilot collaboration loops.
+- **[`coderabbit-pr-loop`](coderabbit-pr-loop/SKILL.md)**: Autonomous GitHub Issue to Draft PR loop with CodeRabbit AI review, triage, atomic fixes, and human handoff.
 
 ### 🧪 QA & Browser Automation
 - **[`ui-automated-testing`](ui-automated-testing/SKILL.md)**: End-to-end visual testing and QA with Chrome DevTools MCP and visual reports.
@@ -67,7 +68,7 @@ This repository contains 41 production-ready agent skills organized into modular
 
 ### ⚡ One-Command Install (All Skills to All Agents)
 
-Install all 41 skills from this catalog directly into your agent environment in one command:
+Install all 42 skills from this catalog directly into your agent environment in one command:
 
 ```bash
 # Install globally to all detected agents (Gemini, Claude Code, Cursor, OpenCode, etc.):
