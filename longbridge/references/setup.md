@@ -69,7 +69,7 @@ Longbridge provides multi-asset market data and trade execution across major glo
 | **United States (US)** | Stocks, ETFs, Options, ADRs | 09:30–16:00 ET (shifts between EST/EDT during daylight saving; Pre-market: 04:00, Post-market: 20:00) | Real-time Level 2 quotes, K-lines, Trade execution, SEC 13F / Form 4 |
 | **Hong Kong (HK)** | Stocks, ETFs, Warrants, CBBCs | 09:30–12:00, 13:00–16:00 HKT | Level 2 market depth, IPO subscription tracking, Corporate filings |
 | **China A-Shares (SH/SZ)** | SSE & SZSE listed equities (Connect) | 09:30–11:30, 13:00–15:00 CST | Northbound trading, Quotes, Financial statements |
-| **Singapore (SG)** | Equities, REITs | 09:00–12:00, 13:00–17:00 SGT | Real-time quotes, Dividends, Company profiles |
+| **Singapore (SG)** | Equities, REITs | 09:00–12:00, 13:00–17:00 SGT | Dividends, Company profiles (real-time quotes unavailable via API/CLI; view in Longbridge app or desktop client) |
 
 ---
 
@@ -77,7 +77,7 @@ Longbridge provides multi-asset market data and trade execution across major glo
 
 To ensure reliable automation and avoid request throttling:
 
-- **REST API Throughput**: Standard tier permits up to **10 requests per second** per account.
+- **REST API Throughput**: Market quote endpoints permit up to **10 requests per second** per account; trading execution endpoints enforce a separate rate limit of **30 requests per 30 seconds**.
 - **WebSocket Streaming**: Used for live quote streaming and order status push notifications. Maintain a persistent heartbeat to prevent socket timeouts.
 - **Token Lifecycle**: OAuth access tokens automatically refresh via the CLI/SDK. If using static access tokens, ensure periodic renewal prior to expiration.
 - **Error Handling**: Monitor for HTTP `429 Too Many Requests` status codes and implement exponential backoff with jitter.
