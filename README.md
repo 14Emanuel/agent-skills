@@ -4,7 +4,7 @@ A centralized, curated repository of specialized AI agent skills compatible with
 
 ## Overview
 
-This repository contains 42 production-ready agent skills organized into modular directories. Each skill includes a standardized `SKILL.md` specification file defining system capabilities, operational triggers, reference scripts, and structured workflows.
+This repository contains 43 production-ready agent skills organized into modular directories. Each skill includes a standardized `SKILL.md` specification file defining system capabilities, operational triggers, reference scripts, and structured workflows.
 
 ---
 
@@ -62,13 +62,16 @@ This repository contains 42 production-ready agent skills organized into modular
 - **[`x-thread-writer`](x-thread-writer/SKILL.md)**: Punchy, hook-driven X thread copy for tech and AI releases.
 - **[`blog-post`](blog-post/SKILL.md)**: Outlining and writing high-clarity developer blog articles.
 
+### 📈 Finance & Trading
+- **[`longbridge`](longbridge/SKILL.md)**: Live financial market data, trading, quotes, and portfolio analysis for US, HK, A-share, and Singapore markets via Longbridge CLI.
+
 ---
 
 ## Installation
 
 ### ⚡ One-Command Install (All Skills to All Agents)
 
-Install all 42 skills from this catalog directly into your agent environment in one command:
+Install all 43 skills from this catalog directly into your agent environment in one command:
 
 ```bash
 # Install globally to all detected agents (Gemini, Claude Code, Cursor, OpenCode, etc.):
