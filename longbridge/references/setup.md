@@ -47,7 +47,7 @@ This stores session and refresh credentials in the user token path (`~/.longbrid
 ### Headless & CI/CD Pipeline Automation
 In headless, non-interactive CI/CD containers:
 1. Complete `longbridge auth login` directly on the target runner host/container that will execute commands, as CLI tokens are encrypted using machine-derived keys.
-2. Ensure the token directory (`~/.longbridge/openapi/`) remains writable and is persisted/cached across pipeline steps so refreshed credentials are retained.
+2. Ensure the token directory (`~/.longbridge/openapi/`) remains writable and is persisted across pipeline steps within a single run so refreshed credentials are retained. Avoid restoring this directory in cross-run caches accessible by untrusted pull requests, as it contains registration management credentials.
 3. For custom automated integrations, register dedicated OAuth clients via `POST https://openapi.longbridge.com/oauth2/register`.
 
 ### Environment Variables
