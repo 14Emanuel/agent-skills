@@ -74,8 +74,8 @@ If a formal plan with multiple discrete tasks exists, expand `BUILD` into granul
 | **BUILD** | Plan approved | All implementation tasks verified |
 | **TEST** | Tasks complete | Verification output passing locally |
 | **REVIEW** | Verification passing | Code review approved / GO decision |
-| **SIMPLIFY** | Review GO | Simplification complete or explicitly skipped |
-| **SHIP** | Simplify complete | Branch merged / PR created and verified |
+| **SIMPLIFY** | Review GO | Simplification complete (if code changed, TEST and REVIEW gates must be re-cleared) or explicitly skipped |
+| **SHIP** | Simplify complete and tests/reviews passing | Branch merged / PR created and verified |
 
 ## Real-Time Updates
 
@@ -85,10 +85,13 @@ Update tracker items in real time as phase gates are cleared — do not batch up
 
 ## Phase Regression
 
-Software development is iterative. When a phase gate fails (for example, a test failure during `TEST` requiring implementation changes in `BUILD`):
-1. Set the target phase (e.g. `BUILD`) back to `in_progress`.
-2. Do **not** create duplicate phase items — update the existing tracker item in place.
-3. Once the regression fix satisfies the exit gate, mark it `completed` again and re-advance.
+Software development is iterative. When a phase gate fails or prior phases must be revisited (e.g., a test failure during `TEST` requiring implementation changes in `BUILD`, or code modifications during `SIMPLIFY` requiring re-testing):
+
+1. **Pause Current Phase**: Mark the active phase as paused or `pending` while earlier phases are revisited.
+2. **Reopen Existing Item**: If the target phase is already present in the tracker, set it back to `in_progress` in place — do **not** create duplicate phase items.
+3. **Restore Uninitialized Phase**: If the target phase was not part of the initial tracker set (e.g., `/test` was invoked without `BUILD`), insert the required phase item into its canonical sequence position with status `in_progress`.
+4. **Re-Clear Downstream Gates**: When code is modified during regression or `SIMPLIFY`, downstream quality gates (`TEST`, `REVIEW`) must be reopened and re-passed before advancing to `SHIP`.
+5. **Re-Advance**: Once the regression satisfies its exit gate, mark it `completed` and re-advance.
 
 ## Completion
 
