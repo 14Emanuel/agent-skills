@@ -78,7 +78,10 @@ longbridge financial-statement SYMBOL.US --kind ALL
 # Summary KPI scorecard (Revenue, EPS, ROE; note: --latest is available for AP accounts)
 longbridge financial-report SYMBOL.US --latest
 
-# Analyst consensus, high/mean/low target estimates
+# Analyst price-target range and rating distribution
+longbridge institution-rating SYMBOL.US
+
+# Analyst financial forecasts: revenue, EBIT, EPS
 longbridge consensus SYMBOL.US
 
 # Industry percentile valuation rankings (PE, PB, PS)
