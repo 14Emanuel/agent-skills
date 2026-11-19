@@ -32,10 +32,11 @@ When initiating work from a specific phase or slash command, initialize only the
 
 ## Phase Regression Handling
 
-Workflows are non-linear when defects or unexpected edge cases arise. When a verification step fails (e.g. `TEST` fails and requires modifications to `BUILD`):
-- Reopen the affected phase by setting its status back to `in_progress`.
-- Update the existing phase item in-place without generating redundant or duplicate entries.
-- Re-run phase exit gate verification before advancing forward again.
+Workflows are non-linear when defects or unexpected edge cases arise. When a verification step fails (e.g. `TEST` fails and requires modifications to `BUILD`, or `SIMPLIFY` introduces code modifications):
+- Pause the active phase and reopen the affected earlier phase by setting its status back to `in_progress`.
+- If the target phase already exists in the tracker, update it in-place without generating redundant or duplicate entries.
+- If the target phase was not initialized in the active command set (e.g. `/test` started without `BUILD`), insert the phase into its canonical position.
+- Any code modifications introduced during regression or `SIMPLIFY` require re-clearing downstream verification gates (`TEST`, `REVIEW`) before proceeding to `SHIP`.
 
 ## Catalog Skill Mapping
 
