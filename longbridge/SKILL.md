@@ -1,0 +1,134 @@
+---
+name: longbridge
+description: Live financial market data, trading, quotes, and portfolio analysis across US, HK, A-share, and Singapore markets via the Longbridge OpenAPI CLI.
+---
+
+# Longbridge Financial Markets
+
+Comprehensive financial market data, trading execution, quotes, and portfolio analytics via the Longbridge CLI and OpenAPI platform.
+
+## When to Use
+
+Use this skill when:
+- Retrieving real-time stock quotes, candlestick data (K-lines), market depth, or intraday price action.
+- Inspecting financial statements, earnings reports, analyst consensus, valuation metrics, or insider transactions.
+- Monitoring portfolio performance, asset balances, margin ratios, and account positions.
+- Executing, modifying, or reviewing stock trades and historical orders.
+- Querying regulatory filings, financial news, sentiment indices, and market discussions.
+
+Detailed installation, authentication, and configuration steps are documented in [references/setup.md](references/setup.md).
+
+---
+
+## Market Coverage & Symbol Formats
+
+Symbols follow the `<SYMBOL>.<MARKET>` format across all commands:
+
+| Market | Suffix | Examples |
+|---|---|---|
+| United States (NYSE, NASDAQ, AMEX) | `.US` | `AAPL.US`, `TSLA.US`, `NVDA.US` |
+| Hong Kong (HKEX) | `.HK` | `700.HK`, `9988.HK`, `0388.HK` |
+| China Shanghai (SSE) | `.SH` | `600519.SH`, `601318.SH` |
+| China Shenzhen (SZSE) | `.SZ` | `000001.SZ`, `300750.SZ` |
+| Singapore (SGX) | `.SG` | `D05.SG`, `Z74.SG` |
+
+---
+
+## Market Analysis & Data Retrieval Workflow
+
+When analyzing a security or portfolio, follow this structured pattern:
+
+1. **Verify Credentials & Tool Availability**:
+   Check if `longbridge` CLI is installed and authenticated (`longbridge auth login`).
+2. **Fetch Live Quotes & Price Dynamics**:
+   Retrieve real-time quotes, intraday movements, and technical candlestick history.
+3. **Inspect Fundamentals & Filings**:
+   Examine latest earnings, financial statements, analyst targets, and SEC/HKEX regulatory filings.
+4. **Synthesize Findings**:
+   Correlate technical price trends with fundamental metrics, valuation ratios, and catalyst events.
+
+### Core Market Commands
+
+```bash
+# Real-time quotes and market depth
+longbridge quote SYMBOL.US
+longbridge depth SYMBOL.US
+
+# Historical candlestick (K-line) data
+longbridge kline history SYMBOL.US --start 2026-01-01 --end 2026-05-01 --period day
+longbridge intraday SYMBOL.US
+
+# News, corporate filings, and sentiment
+longbridge news SYMBOL.US
+longbridge news search "AI revenue"
+longbridge filing SYMBOL.US
+longbridge market-temp
+```
+
+---
+
+## Fundamentals & Equity Research
+
+Retrieve verified financial statements and valuation rankings directly:
+
+```bash
+# Hierarchical income statement, balance sheet, cash flows
+longbridge financial-statement SYMBOL.US --kind ALL
+
+# Summary KPI scorecard (Revenue, EPS, ROE, Margins)
+longbridge financial-report SYMBOL.US --latest
+
+# Analyst consensus, high/mean/low target estimates
+longbridge analyst-estimates SYMBOL.US
+
+# Industry percentile valuation rankings (PE, PB, PS)
+longbridge valuation-rank SYMBOL.US
+
+# Institutional holdings (SEC Form 13F) & insider transactions (Form 4)
+longbridge investors
+longbridge investors <CIK>
+longbridge insider-trades SYMBOL.US
+```
+
+---
+
+## Portfolio & Account Management
+
+Inspect account balances, purchasing power, and positions:
+
+```bash
+# Total assets, cash balances, buying power, margin status
+longbridge assets
+
+# Active positions and unrealized profit/loss
+longbridge positions
+
+# Portfolio allocation, performance, and risk distribution
+longbridge portfolio
+longbridge portfolio short-margin
+
+# Transaction and cash activity history
+longbridge deposits
+longbridge withdrawals
+```
+
+---
+
+## Order Execution & Trading
+
+Execute trades with strict verification of parameters and limits:
+
+```bash
+# View active orders and order history
+longbridge orders
+longbridge orders history --start 2026-01-01
+
+# Place market or limit orders
+longbridge order submit --symbol AAPL.US --side buy --type limit --price 185.00 --quantity 100
+
+# Cancel an active order by ID
+longbridge order cancel <ORDER_ID>
+```
+
+Always confirm order parameters (symbol, price, side, quantity) before submitting execution commands.
+For additional command options, pass the `--help` flag to any command (`longbridge <subcommand> --help`).
