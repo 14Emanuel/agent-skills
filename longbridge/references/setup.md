@@ -55,7 +55,7 @@ Optional runtime settings can be provided via environment variables:
 
 | Variable | Description | Default |
 |---|---|---|
-| `LONGBRIDGE_HTTP_URL` | Base API endpoint override (active only in staging/debug builds in CLI v0.31.2; release builds route to regional endpoints; SDKs allow direct endpoint configuration) | `https://openapi.longbridge.com` |
+| `LONGBRIDGE_HTTP_URL` | Base API endpoint override (in CLI v0.31.2, active in debug builds or release builds when `LONGBRIDGE_ENV=staging`; other release configurations route to regional endpoints; SDKs allow direct endpoint configuration) | `https://openapi.longbridge.com` |
 | `LONGBRIDGE_ENABLE_OVERNIGHT` | Boolean toggle (`true`/`false`) for US overnight quote streaming | `false` |
 
 ---
