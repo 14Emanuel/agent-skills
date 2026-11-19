@@ -72,16 +72,18 @@ longbridge market-temp
 Retrieve verified financial statements and valuation rankings directly:
 
 ```bash
-# Hierarchical income statement, balance sheet, cash flows
-longbridge financial-statement SYMBOL.US --kind ALL
+# Financial statements (valid kinds: IS for Income Statement, BS for Balance Sheet, CF for Cash Flow Statement)
+longbridge financial-statement SYMBOL.US --kind IS
+longbridge financial-statement SYMBOL.US --kind BS
+longbridge financial-statement SYMBOL.US --kind CF
 
 # Summary KPI scorecard (Revenue, EPS, ROE; note: --latest is available for AP accounts)
 longbridge financial-report SYMBOL.US --latest
 
-# Analyst price-target range and rating distribution
+# Analyst price targets and rating distributions (Buy/Hold/Sell)
 longbridge institution-rating SYMBOL.US
 
-# Analyst financial forecasts: revenue, EBIT, EPS
+# Analyst consensus KPI forecast metrics (EPS, Revenue estimates)
 longbridge consensus SYMBOL.US
 
 # Industry percentile valuation rankings (PE, PB, PS)
