@@ -57,7 +57,7 @@ Optional runtime settings can be provided via environment variables:
 | Variable | Description | Default |
 |---|---|---|
 | `LONGBRIDGE_CONFIG_DIR` | Custom directory for OAuth token and configuration storage | `~/.config/longbridge` |
-| `LONGBRIDGE_HTTP_URL` | Base API endpoint URL | `https://openapi.longbridge.com` |
+| `LONGBRIDGE_HTTP_URL` | Base API endpoint override (honored by CLI in staging/debug builds; release builds route to regional endpoints; SDKs allow direct endpoint configuration) | `https://openapi.longbridge.com` |
 | `LONGBRIDGE_ENABLE_OVERNIGHT` | Boolean toggle (`true`/`false`) for US overnight quote streaming | `false` |
 
 ---
