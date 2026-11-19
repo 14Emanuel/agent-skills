@@ -68,7 +68,7 @@ Longbridge provides multi-asset market data and trade execution across major glo
 
 | Market | Asset Classes | Trading Hours (Local) | Features Supported |
 |---|---|---|---|
-| **United States (US)** | Stocks, ETFs, Options, ADRs | 09:30–16:00 EST (Pre-market: 04:00, Post-market: 20:00) | Real-time Level 2 quotes, K-lines, Trade execution, SEC 13F / Form 4 |
+| **United States (US)** | Stocks, ETFs, Options, ADRs | 09:30–16:00 ET (shifts between EST/EDT during daylight saving; Pre-market: 04:00, Post-market: 20:00) | Real-time Level 2 quotes, K-lines, Trade execution, SEC 13F / Form 4 |
 | **Hong Kong (HK)** | Stocks, ETFs, Warrants, CBBCs | 09:30–12:00, 13:00–16:00 HKT | Level 2 market depth, IPO subscription tracking, Corporate filings |
 | **China A-Shares (SH/SZ)** | SSE & SZSE listed equities (Connect) | 09:30–11:30, 13:00–15:00 CST | Northbound trading, Quotes, Financial statements |
 | **Singapore (SG)** | Equities, REITs | 09:00–12:00, 13:00–17:00 SGT | Real-time quotes, Dividends, Company profiles |
