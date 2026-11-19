@@ -4,7 +4,7 @@ A centralized, curated repository of specialized AI agent skills compatible with
 
 ## Overview
 
-This repository contains 42 production-ready agent skills organized into modular directories. Each skill includes a standardized `SKILL.md` specification file defining system capabilities, operational triggers, reference scripts, and structured workflows.
+This repository contains 43 production-ready agent skills organized into modular directories. Each skill includes a standardized `SKILL.md` specification file defining system capabilities, operational triggers, reference scripts, and structured workflows.
 
 ---
 
@@ -21,6 +21,7 @@ This repository contains 42 production-ready agent skills organized into modular
 - **[`versioning-best-practise`](versioning-best-practise/SKILL.md)**: Semantic Versioning (SemVer) guide for tags and releases.
 - **[`using-git-worktrees`](using-git-worktrees/SKILL.md)**: Isolated branch development using Git worktrees.
 - **[`zone01-git-operations`](zone01-git-operations/SKILL.md)**: Git operations and credential handling for Zone01 Gitea repositories.
+- **[`workflow-tracker`](workflow-tracker/SKILL.md)**: Multi-phase lifecycle tracker across SPEC, PLAN, BUILD, TEST, REVIEW, SIMPLIFY, and SHIP phases.
 
 ### 🎨 Frontend & Design Architecture
 - **[`ui-ux-pro-max`](ui-ux-pro-max/SKILL.md)**: Comprehensive design intelligence library covering styles, palettes, typography, components, and UX rules.
@@ -68,7 +69,7 @@ This repository contains 42 production-ready agent skills organized into modular
 
 ### ⚡ One-Command Install (All Skills to All Agents)
 
-Install all 42 skills from this catalog directly into your agent environment in one command:
+Install all 43 skills from this catalog directly into your agent environment in one command:
 
 ```bash
 # Install globally to all detected agents (Gemini, Claude Code, Cursor, OpenCode, etc.):
