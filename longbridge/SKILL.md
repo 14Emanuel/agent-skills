@@ -30,8 +30,7 @@ Symbols follow the `<SYMBOL>.<MARKET>` format across all commands:
 | Hong Kong (HKEX) | `.HK` | `700.HK`, `9988.HK`, `0388.HK` |
 | China Shanghai (SSE) | `.SH` | `600519.SH`, `601318.SH` |
 | China Shenzhen (SZSE) | `.SZ` | `000001.SZ`, `300750.SZ` |
-| Singapore (SGX) | `.SG` | `D05.SG`, `Z74.SG` |
-
+| Singapore (SGX; real-time quotes via desktop/app) | `.SG` | `D05.SG`, `Z74.SG` |
 ---
 
 ## Market Analysis & Data Retrieval Workflow
@@ -58,11 +57,11 @@ longbridge depth SYMBOL.US
 longbridge kline history SYMBOL.US --start 2026-01-01 --end 2026-05-01 --period day
 longbridge intraday SYMBOL.US
 
-# News, corporate filings, and sentiment
+# News, corporate filings, and sentiment (defaults to HK; specify US for US equities)
 longbridge news SYMBOL.US
 longbridge news search "AI revenue"
 longbridge filing SYMBOL.US
-longbridge market-temp
+longbridge market-temp US
 ```
 
 ---
@@ -107,14 +106,15 @@ Inspect account balances, purchasing power, and positions:
 # Total assets, cash balances, buying power, margin status
 longbridge assets
 
-# Active positions and unrealized profit/loss
+# Active positions (quantities and cost basis; query portfolio for unrealized P/L)
 longbridge positions
 
 # Portfolio allocation, performance, and risk distribution
 longbridge portfolio
 longbridge portfolio short-margin
 
-# Transaction and cash activity history
+# Transaction, dividend settlements, and cash activity history
+longbridge cash-flow
 longbridge deposits
 longbridge withdrawals
 ```
@@ -126,9 +126,9 @@ longbridge withdrawals
 Execute trades with strict verification of parameters and limits:
 
 ```bash
-# View today's orders and historical orders
+# View today's orders and historical orders (specify start and end date for historical window)
 longbridge order
-longbridge order --history --start 2026-01-01
+longbridge order --history --start 2026-01-01 --end 2026-03-31
 
 # Place market or limit orders (preview first, then execute with confirmation)
 # 1. Preview order details (outputs estimated cost and execution code; LO default with --price)
