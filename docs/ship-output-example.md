@@ -143,8 +143,9 @@ paths carry enough risk to be a soft blocker.
 - **Rollback procedure:**
   1. Revert the three commits: `git revert HEAD~3..HEAD`
   2. Deploy the reverted build and drain in-flight traffic
-  3. Run `npm run migrate:down` to remove the tags table
-  4. Verify /api/tasks returns without tag data in response
+  3. Export/backup existing tag records to preserve healthy user data before schema teardown
+  4. Run `npm run migrate:down` to remove the tags table
+  5. Verify /api/tasks returns without tag data in response
 - **Recovery time objective:** < 15 minutes
 
 ### Specialist reports (full)
@@ -174,9 +175,10 @@ None outstanding.
 - **Trigger conditions:** Error rate on /api/tags > 1% over 5 minutes, or data 
   corruption reports.
 - **Rollback procedure:**
-  1. Revert every commit in the feature, including fix commits (e.g. `git revert <first-feature-commit>^..HEAD`)
+  1. Revert every feature and fix commit, newest first, by SHA. Leave unrelated later commits in place (e.g. `git revert <fix-commit> <feature-commit-2> <feature-commit-1>`)
   2. Deploy reverted build and drain in-flight traffic
-  3. Run `npm run migrate:down` to remove the tags table
+  3. Export/backup existing tag records to preserve healthy user data before schema teardown
+  4. Run `npm run migrate:down` to remove the tags table
 - **Recovery time objective:** < 15 minutes
 ```
 
