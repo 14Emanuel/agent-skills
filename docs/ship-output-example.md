@@ -141,9 +141,9 @@ paths carry enough risk to be a soft blocker.
 - **Trigger conditions:** Error rate on /api/tags endpoints exceeds 1% over a 
   5-minute window, or any report of data corruption in tag records.
 - **Rollback procedure:**
-  1. Revert the three commits: `git revert HEAD~3..HEAD`
+  1. Revert the three feature commits, newest first, by SHA: `git revert <feature-commit-3> <feature-commit-2> <feature-commit-1>`
   2. Deploy the reverted build and drain in-flight traffic
-  3. Export/backup existing tag records to preserve healthy user data before schema teardown
+  3. Export/backup existing tag records to preserve healthy user data before schema teardown (e.g. `pg_dump --table=tags > tags_backup.sql` or `npm run db:export-tags`)
   4. Run `npm run migrate:down` to remove the tags table
   5. Verify /api/tasks returns without tag data in response
 - **Recovery time objective:** < 15 minutes
@@ -177,8 +177,9 @@ None outstanding.
 - **Rollback procedure:**
   1. Revert every feature and fix commit, newest first, by SHA. Leave unrelated later commits in place (e.g. `git revert <fix-commit> <feature-commit-2> <feature-commit-1>`)
   2. Deploy reverted build and drain in-flight traffic
-  3. Export/backup existing tag records to preserve healthy user data before schema teardown
+  3. Export/backup existing tag records to preserve healthy user data before schema teardown (e.g. `pg_dump --table=tags > tags_backup.sql` or `npm run db:export-tags`)
   4. Run `npm run migrate:down` to remove the tags table
+  5. Verify /api/tasks returns without tag data in response
 - **Recovery time objective:** < 15 minutes
 ```
 
