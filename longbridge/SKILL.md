@@ -124,16 +124,16 @@ longbridge order
 longbridge order --history --start 2026-01-01
 
 # Place market or limit orders (preview first, then execute with confirmation)
-# 1. Preview order details (outputs estimated cost and execution code)
-longbridge order buy AAPL.US 100 --price 185.00 --type limit
-# 2. Submit order execution after explicit user confirmation
-longbridge order execute <EXECUTION_CODE>
+# 1. Preview order details (outputs estimated cost and execution code; LO default with --price)
+longbridge order buy AAPL.US 100 --price 185.00
+# 2. Submit order execution after explicit user confirmation with execution code
+longbridge order buy AAPL.US 100 --price 185.00 --execute <EXECUTION_CODE>
 
 # Cancel an active order (preview first, then execute with confirmation)
-# 1. Preview cancellation
+# 1. Preview cancellation (outputs confirmation code)
 longbridge order cancel <ORDER_ID>
-# 2. Confirm and execute cancellation
-longbridge order cancel <ORDER_ID> --execute
+# 2. Confirm and execute cancellation using the confirmation code
+longbridge order cancel <ORDER_ID> --execute <EXECUTION_CODE>
 ```
 
 Always present the order/cancellation preview to the user and obtain explicit confirmation before running execution commands.
