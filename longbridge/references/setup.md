@@ -35,30 +35,30 @@ longbridge --version
 
 ## 2. Authentication & Environment Configuration
 
-Longbridge OpenAPI supports both OAuth 2.0 interactive login and programmatic API credentials.
+All Longbridge CLI and OpenAPI tools use **OAuth 2.0** for secure, authenticated communication.
 
-### Interactive CLI Authentication (OAuth 2.0)
-For local terminal usage, initiate the browser-based OAuth flow:
+### Interactive Terminal Login
+For interactive environments, initiate the web OAuth flow:
 ```bash
 longbridge auth login
 ```
-This stores session credentials securely in the local user profile.
+This stores session and refresh credentials in the standard user config path (`~/.config/longbridge/` on Linux/macOS, `%APPDATA%\longbridge` on Windows).
 
-### Headless & Programmatic Configuration (Environment Variables)
-For CI/CD pipelines, automated scripts, or headless environments, export the following environment variables:
+### Headless & CI/CD Pipeline Automation
+In headless, non-interactive CI/CD containers:
+1. Complete `longbridge auth login` once in a setup environment.
+2. Persist the credentials directory (`~/.config/longbridge/`) across runner steps or save it as a secure CI secret/volume mount.
+3. The CLI automatically manages and refreshes access tokens using stored OAuth session tokens.
+4. For custom integrations, OAuth clients can be registered via `POST https://openapi.longbridge.com/oauth2/register`.
 
-| Variable | Description | Required |
+### Environment Variables
+Optional runtime settings can be provided via environment variables:
+
+| Variable | Description | Default |
 |---|---|---|
-| `LONGBRIDGE_APP_KEY` | OpenAPI Application Key generated from developer portal | Yes |
-| `LONGBRIDGE_APP_SECRET` | OpenAPI Application Secret | Yes |
-| `LONGBRIDGE_ACCESS_TOKEN` | OAuth Access Token or permanent API key token | Yes |
-| `LONGBRIDGE_HTTP_URL` | Base API URL (defaults to `https://openapi.longbridge.com`) | Optional |
-| `LONGBRIDGE_ENABLE_OVERNIGHT` | Boolean toggle (`true`/`false`) for US overnight quotes | Optional |
-
-To obtain API credentials:
-1. Log in to the [Longbridge Developer Portal](https://open.longbridge.com).
-2. Create an Application under **API Management**.
-3. Generate and configure App Key, App Secret, and Access Tokens with appropriate permissions (Market Data, Trade Execution, Account Info).
+| `LONGBRIDGE_CONFIG_DIR` | Custom directory for OAuth token and configuration storage | `~/.config/longbridge` |
+| `LONGBRIDGE_HTTP_URL` | Base API endpoint URL | `https://openapi.longbridge.com` |
+| `LONGBRIDGE_ENABLE_OVERNIGHT` | Boolean toggle (`true`/`false`) for US overnight quote streaming | `false` |
 
 ---
 
