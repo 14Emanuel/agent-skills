@@ -1,6 +1,6 @@
 ---
 name: coderabbit-pr-loop
-description: Autonomous end-to-end GitHub Issue -> Draft PR -> CodeRabbit AI Review -> Atomic Fix & Reply -> Human Handoff loop. Integrates sort-issues, resolve-github-issue, sort-pr-changes, and atomic-committing skills with scripts/cr-loop.mjs.
+description: Autonomous end-to-end GitHub Issue to Draft PR to CodeRabbit AI Review to Atomic Fix & Reply to Human Handoff loop. Integrates sort-issues, resolve-github-issue, sort-pr-changes, and atomic-committing skills with scripts/cr-loop.mjs.
 ---
 
 # CodeRabbit PR Loop (`coderabbit-pr-loop`)
