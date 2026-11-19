@@ -89,8 +89,7 @@ This document shows what the `/ship` command produces for a realistic change. It
 ### Edge cases
 - Duplicate tag name: covered (TagInput.test.tsx:31)
 - Empty tag name: NOT covered.
-- Tag name with only whitespace: NOT covered (also a server-side validation gap per 
-  security-auditor).
+- Tag name with only whitespace: NOT covered.
 
 ### Error paths
 - API error on tag create (network failure): NOT covered.
@@ -188,4 +187,4 @@ None outstanding.
 - Any **Critical** finding from any persona → automatic NO-GO until fixed or explicitly accepted by the user.
 - The rollback plan is **mandatory** before a GO. A GO without a rollback plan is not valid output.
 - The three personas run **in parallel** — their reports are independent inputs to the main agent's merge step.
-- Personas do not read each other's reports. Deduplication happens in Phase B (note: both `security-auditor` and `test-engineer` independently flagged the whitespace/length gap from different angles; both entries are kept).
+- Personas do not read each other's reports. Deduplication happens in Phase B (note: both `security-auditor` and `test-engineer` independently flagged input validation gaps—length and whitespace—from different angles; both entries are kept).
