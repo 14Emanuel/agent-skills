@@ -42,21 +42,19 @@ For interactive environments, initiate the web OAuth flow:
 ```bash
 longbridge auth login
 ```
-This stores session and refresh credentials in the standard user config path (`~/.config/longbridge/` on Linux/macOS, `%APPDATA%\longbridge` on Windows).
+This stores session and refresh credentials in the user token path (`~/.longbridge/openapi/cli-auth` on Linux/macOS, `%USERPROFILE%\.longbridge\openapi\cli-auth` on Windows).
 
 ### Headless & CI/CD Pipeline Automation
 In headless, non-interactive CI/CD containers:
-1. Complete `longbridge auth login` once in a setup environment.
-2. Persist the credentials directory (`~/.config/longbridge/`) across runner steps or save it as a secure CI secret/volume mount.
-3. The CLI automatically manages and refreshes access tokens using stored OAuth session tokens.
-4. For custom integrations, OAuth clients can be registered via `POST https://openapi.longbridge.com/oauth2/register`.
+1. Complete `longbridge auth login` directly on the target runner host/container that will execute commands, as CLI tokens are encrypted using machine-derived keys.
+2. Ensure the token directory (`~/.longbridge/openapi/`) remains writable and is persisted/cached across pipeline steps so refreshed credentials are retained.
+3. For custom automated integrations, register dedicated OAuth clients via `POST https://openapi.longbridge.com/oauth2/register`.
 
 ### Environment Variables
 Optional runtime settings can be provided via environment variables:
 
 | Variable | Description | Default |
 |---|---|---|
-| `LONGBRIDGE_CONFIG_DIR` | Custom directory for OAuth token and configuration storage | `~/.config/longbridge` |
 | `LONGBRIDGE_HTTP_URL` | Base API endpoint override (honored by CLI in staging/debug builds; release builds route to regional endpoints; SDKs allow direct endpoint configuration) | `https://openapi.longbridge.com` |
 | `LONGBRIDGE_ENABLE_OVERNIGHT` | Boolean toggle (`true`/`false`) for US overnight quote streaming | `false` |
 
