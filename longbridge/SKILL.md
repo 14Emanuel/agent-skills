@@ -119,16 +119,22 @@ longbridge withdrawals
 Execute trades with strict verification of parameters and limits:
 
 ```bash
-# View active orders and order history
-longbridge orders
-longbridge orders history --start 2026-01-01
+# View today's orders and historical orders
+longbridge order
+longbridge order --history --start 2026-01-01
 
-# Place market or limit orders
-longbridge order submit --symbol AAPL.US --side buy --type limit --price 185.00 --quantity 100
+# Place market or limit orders (preview first, then execute with confirmation)
+# 1. Preview order details (outputs estimated cost and execution code)
+longbridge order buy AAPL.US 100 --price 185.00 --type limit
+# 2. Submit order execution after explicit user confirmation
+longbridge order execute <EXECUTION_CODE>
 
-# Cancel an active order by ID
+# Cancel an active order (preview first, then execute with confirmation)
+# 1. Preview cancellation
 longbridge order cancel <ORDER_ID>
+# 2. Confirm and execute cancellation
+longbridge order cancel <ORDER_ID> --execute
 ```
 
-Always confirm order parameters (symbol, price, side, quantity) before submitting execution commands.
+Always present the order/cancellation preview to the user and obtain explicit confirmation before running execution commands.
 For additional command options, pass the `--help` flag to any command (`longbridge <subcommand> --help`).
