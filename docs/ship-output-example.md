@@ -3,8 +3,8 @@
 This document shows what the `/ship` command produces for a realistic change. It covers:
 
 1. The three parallel specialist reports (Phase A)
-2. The merged GO decision (Phase B + C)
-3. A NO-GO example showing how a blocker changes the verdict
+2. The merged NO-GO decision with required pre-ship fixes (Phase B + C)
+3. What a GO looks like once blockers are resolved
 
 ---
 
@@ -106,7 +106,7 @@ paths carry enough risk to be a soft blocker.
 
 ---
 
-## Phase B + C — Merged decision: GO with required pre-ship fixes
+## Phase B + C — Merged decision: NO-GO with required pre-ship fixes
 
 ```markdown
 ## Ship Decision: NO-GO
@@ -143,8 +143,8 @@ paths carry enough risk to be a soft blocker.
   5-minute window, or any report of data corruption in tag records.
 - **Rollback procedure:**
   1. Revert the three commits: `git revert HEAD~3..HEAD`
-  2. Run `npm run migrate:down` to remove the tags table
-  3. Deploy the reverted build
+  2. Deploy the reverted build and drain in-flight traffic
+  3. Run `npm run migrate:down` to remove the tags table
   4. Verify /api/tasks returns without tag data in response
 - **Recovery time objective:** < 15 minutes
 
@@ -175,9 +175,9 @@ None outstanding.
 - **Trigger conditions:** Error rate on /api/tags > 1% over 5 minutes, or data 
   corruption reports.
 - **Rollback procedure:**
-  1. `git revert HEAD~3..HEAD`
-  2. `npm run migrate:down`
-  3. Deploy reverted build
+  1. Revert every commit in the feature, including fix commits (e.g. `git revert <first-feature-commit>^..HEAD`)
+  2. Deploy reverted build and drain in-flight traffic
+  3. Run `npm run migrate:down` to remove the tags table
 - **Recovery time objective:** < 15 minutes
 ```
 
