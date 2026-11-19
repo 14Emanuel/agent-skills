@@ -75,11 +75,11 @@ Retrieve verified financial statements and valuation rankings directly:
 # Hierarchical income statement, balance sheet, cash flows
 longbridge financial-statement SYMBOL.US --kind ALL
 
-# Summary KPI scorecard (Revenue, EPS, ROE, Margins)
+# Summary KPI scorecard (Revenue, EPS, ROE; note: --latest is available for AP accounts)
 longbridge financial-report SYMBOL.US --latest
 
 # Analyst consensus, high/mean/low target estimates
-longbridge analyst-estimates SYMBOL.US
+longbridge consensus SYMBOL.US
 
 # Industry percentile valuation rankings (PE, PB, PS)
 longbridge valuation-rank SYMBOL.US
