@@ -72,10 +72,12 @@ longbridge market-temp
 Retrieve verified financial statements and valuation rankings directly:
 
 ```bash
-# Financial statements (valid kinds: IS for Income Statement, BS for Balance Sheet, CF for Cash Flow Statement)
+# Financial statements (defaults to annual; pass --report qf for quarterly statements)
+# Valid kinds: IS for Income Statement, BS for Balance Sheet, CF for Cash Flow Statement
 longbridge financial-statement SYMBOL.US --kind IS
 longbridge financial-statement SYMBOL.US --kind BS
 longbridge financial-statement SYMBOL.US --kind CF
+longbridge financial-statement SYMBOL.US --kind IS --report qf
 
 # Summary KPI scorecard (Revenue, EPS, ROE; note: --latest is available for AP accounts)
 longbridge financial-report SYMBOL.US --latest
